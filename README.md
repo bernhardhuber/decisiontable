@@ -26,3 +26,5 @@ Maybe to get some idea of this descion-table implementation look at the
 unit-test
  https://github.com/bernhardhuber/decisiontable/blob/master/src/test/java/org/huberb/decisiontable/DecisionTableTest.java
 
+[![Build Status](https://travis-ci.org/bernhardhuber/decisiontable.svg?branch=master)](https://travis-ci.org/bernhardhuber/decisiontable)
+
