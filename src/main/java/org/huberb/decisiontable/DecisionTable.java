@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import org.huberb.decisiontable.DecisionTable.Conditions.ConditionResult;
 import org.huberb.decisiontable.tuple.Couple;
 
 /**
@@ -47,10 +47,23 @@ public class DecisionTable {
      */
     static class Conditions<C> {
 
-        final List<Couple<Enum, Predicate<C>>> l;
+        private final List<Couple<Enum, Predicate<C>>> l;
 
         public Conditions(List<Couple<Enum, Predicate<C>>> l) {
             this.l = l;
+        }
+
+        public static class ConditionResult {
+
+            private final List<Couple<Enum, Boolean>> result;
+
+            public ConditionResult(List<Couple<Enum, Boolean>> result) {
+                this.result = result;
+            }
+
+            public List<Couple<Enum, Boolean>> result() {
+                return result;
+            }
         }
 
         /**
@@ -59,38 +72,33 @@ public class DecisionTable {
          * @param ctx context for evaluating the predicates.
          * @return
          */
-        public List<Couple<Enum, Boolean>> evaluateUsing(C ctx) {
-            List<Couple<Enum, Boolean>> result = new ArrayList<>();
+        public ConditionResult evaluateUsing(C ctx) {
+            final List<Couple<Enum, Boolean>> result = new ArrayList<>();
             l.stream().forEach((t) -> {
-                Boolean f = t.getU().test(ctx);
-                Enum e = t.getT();
+                final Boolean f = t.getU().test(ctx);
+                final Enum e = t.getT();
                 result.add(new Couple(e, f));
             });
-            return result;
+            return new ConditionResult(result);
         }
 
         /**
          * Get Boolean result of the Condition evaluation more easily, than
          * searching the result list.
          */
-        Optional<Boolean> findByCondtionEnum(List<Couple<Enum, Boolean>> result, Enum conditionEnum) {
-            final BiFunction<List<Couple<Enum, Boolean>>, Enum, Optional<Boolean>> funcResultConditions
-                    = (List<Couple<Enum, Boolean>> conditionResult, Enum cond) -> {
-                        Optional<Boolean> res = conditionResult.
-                        stream().
-                        filter((Couple<Enum, Boolean> elem) -> elem.getT() == cond).
-                        findFirst().
-                        map((Couple<Enum, Boolean> elem) -> elem.getU());
-                        return res;
-                    };
-            Optional<Boolean> bresult = funcResultConditions.apply(result, conditionEnum);
-            return bresult;
+        public Optional<Boolean> findByCondtionEnum(ConditionResult conditionResult, Enum conditionEnum) {
+            final Optional<Boolean> optBooleanResult = conditionResult.result().
+                    stream().
+                    filter((Couple<Enum, Boolean> elem) -> elem.getT() == conditionEnum).
+                    findFirst().
+                    map((Couple<Enum, Boolean> elem) -> elem.getU());
+            return optBooleanResult;
         }
     }
 
     static class ConditionsListBuilder<C> {
 
-        final List<Couple<Enum, Predicate<C>>> l = new ArrayList<>();
+        private final List<Couple<Enum, Predicate<C>>> l = new ArrayList<>();
 
         ConditionsListBuilder<C> enumPredicate(Enum e, Predicate<C> p) {
             l.add(new Couple(e, p));
@@ -108,9 +116,9 @@ public class DecisionTable {
      */
     static class RuleMapping {
 
-        final Map<List<Couple<Enum, Boolean>>, List<Enum>> m;
+        final Map<ConditionResult, List<Enum>> m;
 
-        public RuleMapping(Map<List<Couple<Enum, Boolean>>, List<Enum>> m) {
+        public RuleMapping(Map<ConditionResult, List<Enum>> m) {
             this.m = m;
         }
 
@@ -119,17 +127,18 @@ public class DecisionTable {
          * @param l
          * @return
          */
-        List<Enum> mapToRules(List<Couple<Enum, Boolean>> l) {
+        List<Enum> mapToRules(ConditionResult conditionResult) {
+            List<Couple<Enum, Boolean>> l = conditionResult.result;
             List<Enum> result = m.get(l);
             if (result == null) {
-                for (Map.Entry<List<Couple<Enum, Boolean>>, List<Enum>> entry : m.entrySet()) {
-                    List<Couple<Enum, Boolean>> entryKey = entry.getKey();
+                for (Map.Entry<ConditionResult, List<Enum>> entry : m.entrySet()) {
+                    ConditionResult entryKey = entry.getKey();
 
                     boolean matched = false;
-                    if (l.size() == entryKey.size()) {
+                    if (l.size() == entryKey.result().size()) {
                         for (int i = 0; i < l.size(); i++) {
                             Couple<Enum, Boolean> lcouple = l.get(i);
-                            Couple<Enum, Boolean> entryKeycouple = entryKey.get(i);
+                            Couple<Enum, Boolean> entryKeycouple = entryKey.result().get(i);
 
                             if (lcouple.getT() == entryKeycouple.getT()
                                     && lcouple.getU().equals(entryKeycouple.getU())) {
@@ -154,21 +163,21 @@ public class DecisionTable {
      */
     static class RuleMappingMapBuilder {
 
-        List<Couple<Enum, Boolean>> keyl = new ArrayList<>();
-        final Map<List<Couple<Enum, Boolean>>, List<Enum>> m = new HashMap<>();
+        ConditionResult conditionResultKey = new ConditionResult(new ArrayList<>());
+        final Map<ConditionResult, List<Enum>> m = new HashMap<>();
 
         RuleMappingMapBuilder assocConditionWithPredicateResult(Enum e, Boolean b) {
-            keyl.add(new Couple(e, b));
+            conditionResultKey.result().add(new Couple(e, b));
             return this;
         }
 
         RuleMappingMapBuilder mapToRules(List<Enum> v) {
-            m.put(keyl, v);
-            keyl = new ArrayList<>();
+            m.put(conditionResultKey, v);
+            conditionResultKey = new ConditionResult(new ArrayList<>());
             return this;
         }
 
-        Map<List<Couple<Enum, Boolean>>, List<Enum>> build() {
+        Map<ConditionResult, List<Enum>> build() {
             return m;
         }
     }
