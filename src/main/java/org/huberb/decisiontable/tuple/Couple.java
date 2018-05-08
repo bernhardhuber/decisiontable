@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * Tuple with 2 elements.
- * 
+ *
  * @author berni
  */
 public class Couple<T, U> implements Serializable {
@@ -38,7 +38,6 @@ public class Couple<T, U> implements Serializable {
     }
 
     //---
-
     @Override
     public int hashCode() {
         int hash = 5;
@@ -56,13 +55,10 @@ public class Couple<T, U> implements Serializable {
             return false;
         }
         final Couple<?, ?> other = (Couple<?, ?>) obj;
-        if (!Objects.equals(this.t, other.t)) {
-            return false;
-        }
-        if (!Objects.equals(this.u, other.u)) {
-            return false;
-        }
-        return true;
+        boolean tAndUEquals = true;
+        tAndUEquals = tAndUEquals && Objects.equals(this.t, other.t);
+        tAndUEquals = tAndUEquals && Objects.equals(this.u, other.u);
+        return tAndUEquals;
     }
-    
+
 }

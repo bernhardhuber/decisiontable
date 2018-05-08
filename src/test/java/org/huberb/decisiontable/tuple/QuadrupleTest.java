@@ -12,20 +12,20 @@ import static org.junit.Assert.*;
  *
  * @author berni
  */
-public class CoupleTest {
+public class QuadrupleTest {
 
     @Test
     public void testConstructor() {
-        Couple<Integer, String> is = new Couple<>(1, "A");
+        Quadruple<Integer, String, Integer, String> is = new Quadruple<>(1, "A", 2, "B");
         assertEquals(1, is.getT().intValue());
         assertEquals("A", is.getU());
     }
 
     @Test
     public void testEquals() {
-        final Couple<Integer, String> is1_1 = new Couple<>(1, "A");
-        final Couple<Integer, String> is1_2 = new Couple<>(1, "A");
-        final Couple<Integer, String> is2_1 = new Couple<>(2, "B");
+        final Quadruple<Integer, String, Integer, String> is1_1 = new Quadruple<>(1, "A", 2, "AA");
+        final Quadruple<Integer, String, Integer, String> is1_2 = new Quadruple<>(1, "A", 2, "AA");
+        final Quadruple<Integer, String, Integer, String> is2_1 = new Quadruple<>(2, "B", 3, "BBB");
 
         assertEquals(true, is1_1.equals(is1_1));
         assertEquals(true, is1_1.equals(is1_2));
@@ -37,9 +37,9 @@ public class CoupleTest {
 
     @Test
     public void testHashCode() {
-        final Couple<Integer, String> is1_1 = new Couple<>(1, "A");
-        final Couple<Integer, String> is1_2 = new Couple<>(1, "A");
-        final Couple<Integer, String> is2_1 = new Couple<>(2, "B");
+        final Quadruple<Integer, String, Integer, String> is1_1 = new Quadruple<>(1, "A", 2, "AA");
+        final Quadruple<Integer, String, Integer, String> is1_2 = new Quadruple<>(1, "A", 2, "AA");
+        final Quadruple<Integer, String, Integer, String> is2_1 = new Quadruple<>(2, "B", 3, "BBB");
 
         assertEquals(true, is1_1.hashCode() == is1_1.hashCode());
         assertEquals(true, is1_1.hashCode() == is1_2.hashCode());

@@ -7,24 +7,23 @@ package org.huberb.decisiontable.tuple;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * Tuple with 4 elements.
- * 
+ *
  * @author berni
  */
 public class Quadruple<T, U, V, W> implements Serializable {
 
     private static final long serialVersionUID = 20161011L;
 
-    final T t;
-    final U u;
-    final V v;
-    final W w;
+    private final T t;
+    private final U u;
+    private final V v;
+    private final W w;
 
     Quadruple() {
-        this(() -> null, () -> null, () -> null, () -> null);
+        this(null, null, null, null);
     }
 
     public Quadruple(T t, U u, V v, W w) {
@@ -32,13 +31,6 @@ public class Quadruple<T, U, V, W> implements Serializable {
         this.u = u;
         this.v = v;
         this.w = w;
-    }
-
-    public Quadruple(Supplier<T> t, Supplier<U> u, Supplier<V> v, Supplier<W> w) {
-        this.t = t.get();
-        this.u = u.get();
-        this.v = v.get();
-        this.w = w.get();
     }
 
     public T getT() {
@@ -58,7 +50,6 @@ public class Quadruple<T, U, V, W> implements Serializable {
     }
 
     //---
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -78,19 +69,12 @@ public class Quadruple<T, U, V, W> implements Serializable {
             return false;
         }
         final Quadruple<?, ?, ?, ?> other = (Quadruple<?, ?, ?, ?>) obj;
-        if (!Objects.equals(this.t, other.t)) {
-            return false;
-        }
-        if (!Objects.equals(this.u, other.u)) {
-            return false;
-        }
-        if (!Objects.equals(this.v, other.v)) {
-            return false;
-        }
-        if (!Objects.equals(this.w, other.w)) {
-            return false;
-        }
-        return true;
+        boolean equalsResult = true;
+        equalsResult = equalsResult && Objects.equals(this.t, other.t);
+        equalsResult = equalsResult && Objects.equals(this.u, other.u);
+        equalsResult = equalsResult && Objects.equals(this.v, other.v);
+        equalsResult = equalsResult && Objects.equals(this.w, other.w);
+        return equalsResult;
     }
-    
+
 }

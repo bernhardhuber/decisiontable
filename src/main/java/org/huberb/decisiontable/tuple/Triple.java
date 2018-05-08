@@ -7,35 +7,28 @@ package org.huberb.decisiontable.tuple;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * Tuple with 3 elements.
- * 
+ *
  * @author berni
  */
 public class Triple<T, U, V> implements Serializable {
 
     private static final long serialVersionUID = 20161011L;
 
-    final T t;
-    final U u;
-    final V v;
+    private final T t;
+    private final U u;
+    private final V v;
 
     Triple() {
-        this(() -> null, () -> null, () -> null);
+        this(null, null, null);
     }
 
     public Triple(T t, U u, V v) {
         this.t = t;
         this.u = u;
         this.v = v;
-    }
-
-    public Triple(Supplier<T> t, Supplier<U> u, Supplier<V> v) {
-        this.t = t.get();
-        this.u = u.get();
-        this.v = v.get();
     }
 
     public T getT() {
@@ -49,9 +42,8 @@ public class Triple<T, U, V> implements Serializable {
     public V getV() {
         return v;
     }
-    
-    //---
 
+    //---
     @Override
     public int hashCode() {
         int hash = 7;
@@ -70,17 +62,11 @@ public class Triple<T, U, V> implements Serializable {
             return false;
         }
         final Triple<?, ?, ?> other = (Triple<?, ?, ?>) obj;
-        if (!Objects.equals(this.t, other.t)) {
-            return false;
-        }
-        if (!Objects.equals(this.u, other.u)) {
-            return false;
-        }
-        if (!Objects.equals(this.v, other.v)) {
-            return false;
-        }
-        return true;
+        boolean equalsResult = true;
+        equalsResult = equalsResult && Objects.equals(this.t, other.t);
+        equalsResult = equalsResult && Objects.equals(this.u, other.u);
+        equalsResult = equalsResult && Objects.equals(this.v, other.v);
+        return equalsResult;
     }
-    
 
 }

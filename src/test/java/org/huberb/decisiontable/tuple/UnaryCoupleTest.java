@@ -12,20 +12,20 @@ import static org.junit.Assert.*;
  *
  * @author berni
  */
-public class CoupleTest {
+public class UnaryCoupleTest {
 
     @Test
     public void testConstructor() {
-        Couple<Integer, String> is = new Couple<>(1, "A");
-        assertEquals(1, is.getT().intValue());
-        assertEquals("A", is.getU());
+        UnaryCouple<String> is = new UnaryCouple<>("A", "B");
+        assertEquals("A", is.getT());
+        assertEquals("B", is.getU());
     }
 
     @Test
     public void testEquals() {
-        final Couple<Integer, String> is1_1 = new Couple<>(1, "A");
-        final Couple<Integer, String> is1_2 = new Couple<>(1, "A");
-        final Couple<Integer, String> is2_1 = new Couple<>(2, "B");
+        final UnaryCouple<String> is1_1 = new UnaryCouple<>("A", "B");
+        final UnaryCouple<String> is1_2 = new UnaryCouple<>("A", "B");
+        final UnaryCouple<String> is2_1 = new UnaryCouple<>("B", "C");
 
         assertEquals(true, is1_1.equals(is1_1));
         assertEquals(true, is1_1.equals(is1_2));
@@ -37,9 +37,9 @@ public class CoupleTest {
 
     @Test
     public void testHashCode() {
-        final Couple<Integer, String> is1_1 = new Couple<>(1, "A");
-        final Couple<Integer, String> is1_2 = new Couple<>(1, "A");
-        final Couple<Integer, String> is2_1 = new Couple<>(2, "B");
+        final UnaryCouple<String> is1_1 = new UnaryCouple<>("A", "B");
+        final UnaryCouple<String> is1_2 = new UnaryCouple<>("A", "B");
+        final UnaryCouple<String> is2_1 = new UnaryCouple<>("B", "C");
 
         assertEquals(true, is1_1.hashCode() == is1_1.hashCode());
         assertEquals(true, is1_1.hashCode() == is1_2.hashCode());
