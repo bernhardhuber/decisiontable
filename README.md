@@ -22,7 +22,7 @@ The basic idea is to replace long-and-nested if/else by some more simpler
 
 constructs.
 
-Maybe to get some idea of this descion-table implementation look at the
+Maybe to get some idea of this desicion-table implementation look at the
 unit-test
  https://github.com/bernhardhuber/decisiontable/blob/master/src/test/java/org/huberb/decisiontable/DecisionTableTest.java
 
