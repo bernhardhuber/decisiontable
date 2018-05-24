@@ -6,13 +6,10 @@
 package org.huberb.decisiontable;
 
 import java.util.List;
-import java.util.function.Predicate;
 import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.Person.ConditionsEnum;
 import org.huberb.decisiontable.tuple.Couple;
-import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
 import org.junit.Test;
 
 /**

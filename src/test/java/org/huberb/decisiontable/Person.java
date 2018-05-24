@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 //----
-class Person {
+public class Person {
 
     /**
      * Conditions of the person.
      */
-    enum ConditionsEnum {
+   public  enum ConditionsEnum {
 
         c1, c2
     }
@@ -22,12 +22,12 @@ class Person {
     /**
      * Rules of the person.
      */
-    enum RulesEnum {
+    public enum RulesEnum {
 
         r1, r2, r3
     }
 
-    enum Gender {
+    public enum Gender {
         female, male
     }
     String name;
@@ -44,7 +44,32 @@ class Person {
         this.height = height;
     }
 
-    static List<Person> tenPersons() {
+    public String getName() {
+        return name;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "name=" + name + ", gender=" + gender + ", age=" + age + ", weight=" + weight + ", height=" + height + '}';
+    }
+
+    public static List<Person> tenPersons() {
         List<Person> persons = Arrays.asList(
                 new Person("Peter", Gender.male, 15, 50, 170),
                 new Person("Manuela", Gender.female, 21, 55, 185),

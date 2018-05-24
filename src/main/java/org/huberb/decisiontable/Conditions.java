@@ -58,6 +58,12 @@ public class Conditions<C> {
             final ConditionResult other = (ConditionResult) obj;
             return Objects.equals(this.result, other.result);
         }
+
+        @Override
+        public String toString() {
+            return "ConditionResult{" + "result=" + result + '}';
+        }
+                
     }
 
     /**

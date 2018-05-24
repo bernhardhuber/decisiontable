@@ -11,9 +11,7 @@ import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.Person.ConditionsEnum;
 import org.huberb.decisiontable.Person.RulesEnum;
 import org.huberb.decisiontable.tuple.Couple;
-import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -21,17 +19,6 @@ import org.junit.Test;
  * @author berni
  */
 public class ActionMappingTest {
-
-    public ActionMappingTest() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void test_DecisionTableAction() {

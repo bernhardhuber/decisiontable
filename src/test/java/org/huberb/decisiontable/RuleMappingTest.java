@@ -10,9 +10,7 @@ import java.util.List;
 import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.Person.ConditionsEnum;
 import org.huberb.decisiontable.Person.RulesEnum;
-import org.junit.After;
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -20,17 +18,6 @@ import org.junit.Test;
  * @author berni
  */
 public class RuleMappingTest {
-
-    public RuleMappingTest() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void test_DecisionTableRuleMapping() {
