@@ -22,7 +22,7 @@ public class RuleMapping {
 
     /**
      *
-     * @param l
+     * @param conditionResult
      * @return
      */
     public List<Enum> mapToRules(Conditions.ConditionResult conditionResult) {

@@ -74,7 +74,9 @@ public class Conditions<C> {
      */
     public ConditionResult evaluateUsing(C ctx) {
         final List<Couple<Enum, Boolean>> result = new ArrayList<>();
-        conditionsList.stream().forEach((org.huberb.decisiontable.tuple.Couple<java.lang.Enum, java.util.function.Predicate<C>> t) -> {
+        conditionsList
+                .stream()
+                .forEach((org.huberb.decisiontable.tuple.Couple<java.lang.Enum, java.util.function.Predicate<C>> t) -> {
             final Boolean f = t.getU().test(ctx);
             final Enum e = t.getT();
             result.add(new Couple(e, f));
@@ -85,9 +87,17 @@ public class Conditions<C> {
     /**
      * Get Boolean result of the Condition evaluation more easily, than
      * searching the result list.
+     * @param conditionResult
+     * @param conditionEnum
+     * @return 
      */
     public Optional<Boolean> findByCondtionEnum(ConditionResult conditionResult, Enum conditionEnum) {
-        final Optional<Boolean> optBooleanResult = conditionResult.result().stream().filter((Couple<Enum, Boolean> elem) -> elem.getT() == conditionEnum).findFirst().map((Couple<Enum, Boolean> elem) -> elem.getU());
+        final Optional<Boolean> optBooleanResult = conditionResult
+                .result()
+                .stream()
+                .filter((Couple<Enum, Boolean> elem) -> elem.getT() == conditionEnum)
+                .findFirst()
+                .map((Couple<Enum, Boolean> elem) -> elem.getU());
         return optBooleanResult;
     }
 

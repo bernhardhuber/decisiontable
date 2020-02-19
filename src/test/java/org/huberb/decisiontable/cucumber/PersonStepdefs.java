@@ -10,16 +10,13 @@ import cucumber.api.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import static junit.framework.Assert.assertEquals;
-import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.TypeSafeDiagnosingMatcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.huberb.decisiontable.Conditions;
 import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.ConditionsListBuilder;
 import org.huberb.decisiontable.Person;
 import org.huberb.decisiontable.tuple.Couple;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -62,7 +59,7 @@ public class PersonStepdefs {
     public void condition_matches(String arg1) throws Throwable {
         String m = "" + arg1;
         Enum e = Person.ConditionsEnum.valueOf(arg1);
-        final Conditions<Person> dtConditionsPerson = new Conditions<Person>(this.l);
+        final Conditions<Person> dtConditionsPerson = new Conditions<>(this.l);
         ConditionResult conditionResult = dtConditionsPerson.evaluateUsing(person);
         Couple<Enum, Boolean> rArg1 = conditionResult.result().stream().filter((c) -> c.getT() == e).findFirst().orElseThrow(() -> {
             throw new AssertionError("Missing enum " + arg1 + ", " + conditionResult);

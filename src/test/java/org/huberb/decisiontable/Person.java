@@ -70,7 +70,7 @@ public class Person {
     }
 
     public static List<Person> tenPersons() {
-        List<Person> persons = Arrays.asList(
+        final List<Person> persons = Arrays.asList(
                 new Person("Peter", Gender.male, 15, 50, 170),
                 new Person("Manuela", Gender.female, 21, 55, 185),
                 new Person("Thomas", Gender.male, 26, 70, 160),

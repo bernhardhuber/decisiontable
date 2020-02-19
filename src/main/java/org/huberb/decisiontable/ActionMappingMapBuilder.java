@@ -14,6 +14,8 @@ import java.util.function.Function;
 /**
  *
  * @author berni3
+ * @param <C>
+ * @param <R>
  */
 public class ActionMappingMapBuilder<C, R> {
 

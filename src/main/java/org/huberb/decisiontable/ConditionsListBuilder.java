@@ -14,6 +14,7 @@ import org.huberb.decisiontable.tuple.Couple;
 /**
  *
  * @author berni3
+ * @param <C>
  */
 public class ConditionsListBuilder<C> {
 
