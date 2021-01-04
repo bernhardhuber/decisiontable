@@ -1,7 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2021 berni3.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.huberb.decisiontable;
 
@@ -21,7 +31,7 @@ public class ConditionsTest {
     @Test
     public void test_DecisionTableConditions() {
         final List<Person> persons = Person.tenPersons();
-        final Conditions<Person> dtConditionsPerson = new Conditions<Person>(
+        final Conditions<Person> dtConditionsPerson = new Conditions<>(
                 new ConditionsListBuilder<Person>().
                         enumPredicate(ConditionsEnum.c1, (p) -> p.age > 20).
                         enumPredicate(ConditionsEnum.c2, (p) -> p.weight % 2 == 0).
@@ -45,7 +55,7 @@ public class ConditionsTest {
     public void test_DecisionTableConditions_Supplier() {
         final List<Person> persons = Person.tenPersons();
 
-        final Conditions<Person> dtConditionsPerson = new Conditions<Person>(
+        final Conditions<Person> dtConditionsPerson = new Conditions<>(
                 new ConditionsListBuilder<Person>().
                         enumPredicateSupplier(() -> new Couple<>(ConditionsEnum.c1, (p) -> p.age > 20)).
                         enumPredicateSupplier(() -> new Couple<>(ConditionsEnum.c2, (p) -> p.weight % 2 == 0)).
