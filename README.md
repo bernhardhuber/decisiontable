@@ -28,3 +28,4 @@ unit-test
 
 [![Build Status](https://travis-ci.org/bernhardhuber/decisiontable.svg?branch=master)](https://travis-ci.org/bernhardhuber/decisiontable)
 
+[![Java CI](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml/badge.svg)](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml)
