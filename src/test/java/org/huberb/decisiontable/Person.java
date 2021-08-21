@@ -25,20 +25,18 @@ public class Person {
      * Conditions of the person.
      */
     public enum ConditionsEnum {
-
-        c1, c2
+        c1, c2;
     }
 
     /**
      * Rules of the person.
      */
     public enum RulesEnum {
-
-        r1, r2, r3
+        r1, r2, r3;
     }
 
     public enum Gender {
-        female, male
+        female, male;
     }
     String name;
     Gender gender;
