@@ -92,5 +92,22 @@ public class PersonStepdefs {
         assertEquals(e, rArg1.getT(), m);
         assertEquals(true, rArg1.getU().booleanValue(), m);
     }
+    @Then("^Condition \"([^\"]*)\" does not match$")
+    public void condition_does_not_match(String conditionName) throws Throwable {
+        final String m = "" + conditionName;
+        final Enum e = Person.ConditionsEnum.valueOf(conditionName);
+        final Conditions<Person> dtConditionsPerson = new Conditions<>(this.l);
+        final ConditionResult conditionResult = dtConditionsPerson.evaluateUsing(person);
+        final Couple<Enum, Boolean> rArg1 = conditionResult.result()
+                .stream()
+                .filter((c) -> c.getT() == e)
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new AssertionError("Missing enum " + conditionName + ", " + conditionResult);
+                });
+
+        assertEquals(e, rArg1.getT(), m);
+        assertEquals(false, rArg1.getU().booleanValue(), m);
+    }
 
 }
