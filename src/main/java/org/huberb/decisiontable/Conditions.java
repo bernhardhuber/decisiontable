@@ -73,7 +73,21 @@ public class Conditions<C> {
         public String toString() {
             return "ConditionResult{" + "result=" + result + '}';
         }
-                
+
+        /**
+         * Return condition evaluation result.
+         *
+         * @param conditionEnum
+         * @return
+         */
+        public Optional<Boolean> findByConditionEnum(Enum conditionEnum) {
+            final Optional<Boolean> optBooleanResult = this.result()
+                    .stream()
+                    .filter((Couple<Enum, Boolean> elem) -> elem.getT() == conditionEnum)
+                    .findFirst()
+                    .map((Couple<Enum, Boolean> elem) -> elem.getU());
+            return optBooleanResult;
+        }
     }
 
     /**
@@ -84,31 +98,11 @@ public class Conditions<C> {
      */
     public ConditionResult evaluateUsing(C ctx) {
         final List<Couple<Enum, Boolean>> result = new ArrayList<>();
-        conditionsList
-                .stream()
-                .forEach((org.huberb.decisiontable.tuple.Couple<java.lang.Enum, java.util.function.Predicate<C>> t) -> {
-            final Boolean f = t.getU().test(ctx);
+        conditionsList.stream().forEach((Couple<Enum, Predicate<C>> t) -> {
             final Enum e = t.getT();
+            final Boolean f = t.getU().test(ctx);
             result.add(new Couple(e, f));
         });
         return new ConditionResult(result);
     }
-
-    /**
-     * Get Boolean result of the Condition evaluation more easily, than
-     * searching the result list.
-     * @param conditionResult
-     * @param conditionEnum
-     * @return 
-     */
-    public Optional<Boolean> findByConditionEnum(ConditionResult conditionResult, Enum conditionEnum) {
-        final Optional<Boolean> optBooleanResult = conditionResult
-                .result()
-                .stream()
-                .filter((Couple<Enum, Boolean> elem) -> elem.getT() == conditionEnum)
-                .findFirst()
-                .map((Couple<Enum, Boolean> elem) -> elem.getU());
-        return optBooleanResult;
-    }
-
 }

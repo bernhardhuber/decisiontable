@@ -47,8 +47,8 @@ public class ConditionsTest {
         assertEquals(ConditionsEnum.c2, conditionResult.result().get(1).getT());
         assertEquals(true, conditionResult.result().get(1).getU());
 
-        assertEquals(false, dtConditionsPerson.findByConditionEnum(conditionResult, ConditionsEnum.c1).get());
-        assertEquals(true, dtConditionsPerson.findByConditionEnum(conditionResult, ConditionsEnum.c2).get());
+        assertEquals(false, conditionResult.findByConditionEnum(ConditionsEnum.c1).get());
+        assertEquals(true, conditionResult.findByConditionEnum(ConditionsEnum.c2).get());
     }
 
     @Test
@@ -71,8 +71,8 @@ public class ConditionsTest {
         assertEquals(ConditionsEnum.c2, conditionResult.result().get(1).getT());
         assertEquals(true, conditionResult.result().get(1).getU());
 
-        assertEquals(false, dtConditionsPerson.findByConditionEnum(conditionResult, ConditionsEnum.c1).get());
-        assertEquals(true, dtConditionsPerson.findByConditionEnum(conditionResult, ConditionsEnum.c2).get());
+        assertEquals(false, conditionResult.findByConditionEnum(ConditionsEnum.c1).get());
+        assertEquals(true, conditionResult.findByConditionEnum(ConditionsEnum.c2).get());
     }
 
 }

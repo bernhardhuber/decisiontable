@@ -50,20 +50,20 @@ public class RuleMappingTest {
                         build()
         );
         {
-            Person person = persons.get(0);
+            final Person person = persons.get(0);
             final ConditionResult conditionsResult = dtConditionsPerson.evaluateUsing(person);
-            assertEquals(false, dtConditionsPerson.findByConditionEnum(conditionsResult, ConditionsEnum.c1).get());
-            assertEquals(true, dtConditionsPerson.findByConditionEnum(conditionsResult, ConditionsEnum.c2).get());
+            assertEquals(false, conditionsResult.findByConditionEnum(ConditionsEnum.c1).get());
+            assertEquals(true, conditionsResult.findByConditionEnum(ConditionsEnum.c2).get());
 
             final List<Enum> rulesResult = dtRuleMappingPerson.mapToRules(conditionsResult);
             assertEquals(1, rulesResult.size());
             assertEquals(RulesEnum.r1, rulesResult.get(0));
         }
         {
-            Person person = persons.get(1);
+            final Person person = persons.get(1);
             final ConditionResult conditionsResult = dtConditionsPerson.evaluateUsing(person);
-            assertEquals(true, dtConditionsPerson.findByConditionEnum(conditionsResult, ConditionsEnum.c1).get());
-            assertEquals(false, dtConditionsPerson.findByConditionEnum(conditionsResult, ConditionsEnum.c2).get());
+            assertEquals(true, conditionsResult.findByConditionEnum(ConditionsEnum.c1).get());
+            assertEquals(false, conditionsResult.findByConditionEnum(ConditionsEnum.c2).get());
             final List<Enum> rulesResult = dtRuleMappingPerson.mapToRules(conditionsResult);
             assertEquals(1, rulesResult.size());
             assertEquals(RulesEnum.r2, rulesResult.get(0));
