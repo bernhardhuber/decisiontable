@@ -19,8 +19,8 @@ import java.util.List;
 import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.Person.ConditionsEnum;
 import org.huberb.decisiontable.tuple.Couple;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  *
