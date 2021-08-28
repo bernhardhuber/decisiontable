@@ -32,7 +32,7 @@ import java.util.function.Predicate;
  * <li>
  * Finally rules are evaluated using {@link  Function}.
  * </li>
- * </ul>
+ * </ol>
  * <p>
  * This implementation is quite simple, and uses Builders for setting up the
  * data structure.
