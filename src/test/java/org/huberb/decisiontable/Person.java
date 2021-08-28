@@ -25,7 +25,8 @@ public class Person {
      * Conditions of the person.
      */
     public enum ConditionsEnum {
-        c1, c2;
+        c1, c2, c3,
+        c1_age, c2_weight, c3_height;
     }
 
     /**

@@ -66,6 +66,15 @@ public class PersonStepdefs {
         );
     }
 
+    @Given("^the condition \"([^\"]*)\" is associated with predicate height = \"([^\"]*)\"$")
+    public void the_condition_is_associated_with_predicate_height(String conditionName, int heightValue) {
+        final Enum e = Person.ConditionsEnum.valueOf(conditionName);
+        final Predicate<Person> weightPred = (p) -> p.getWeight() == heightValue;
+        l.addAll(new ConditionsListBuilder<Person>().
+                enumPredicate(e, weightPred).build()
+        );
+    }
+
     @Then("^Condition \"([^\"]*)\" matches$")
     public void condition_matches(String conditionName) throws Throwable {
         final String m = "" + conditionName;
@@ -80,7 +89,6 @@ public class PersonStepdefs {
                     throw new AssertionError("Missing enum " + conditionName + ", " + conditionResult);
                 });
 
-        // TODO replace ? MatcherAssert.assertThat(rArg1, new CoupleEnumBooleanMatcher(e, true));
         assertEquals(e, rArg1.getT(), m);
         assertEquals(true, rArg1.getU().booleanValue(), m);
     }
