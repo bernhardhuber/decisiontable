@@ -24,9 +24,10 @@ import java.util.function.Function;
 import org.huberb.decisiontable.tuple.Couple;
 
 /**
+ * Encapsulate mapping from a enumeration context to an action result.
  *
- * @param <C> Context-Type
- * @param <R> Action-Result
+ * @param <C> Context-Type an enumeration
+ * @param <R> Action-Result a function mapping the enumeration to some value.
  */
 public class ActionMapping<C, R> {
 
@@ -44,12 +45,12 @@ public class ActionMapping<C, R> {
      * @return
      */
     public List<Couple<Enum, R>> applyActions(C ctx, List<Enum> l) {
-        List<Couple<Enum, R>> result = new ArrayList<>();
-        Set<Enum> s = new LinkedHashSet<>(l);
+        final List<Couple<Enum, R>> result = new ArrayList<>();
+        final Set<Enum> s = new LinkedHashSet<>(l);
         for (Enum e : s) {
-            List<Function<C, R>> fl = m.get(e);
+            final List<Function<C, R>> fl = m.get(e);
             for (Function<C, R> f : fl) {
-                R r = f.apply(ctx);
+                final R r = f.apply(ctx);
                 result.add(new Couple(e, r));
             }
         }

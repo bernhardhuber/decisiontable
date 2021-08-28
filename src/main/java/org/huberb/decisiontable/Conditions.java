@@ -23,7 +23,7 @@ import java.util.function.Predicate;
 import org.huberb.decisiontable.tuple.Couple;
 
 /**
- * Conditions: named via {@link Enum} and evaluated by {@link Predicate}.
+ * Conditions: named via {@link Enum} and evaluated by a {@link Predicate}.
  *
  * @param <C> the Context-type of the predicate evaluation.
  */
@@ -101,7 +101,7 @@ public class Conditions<C> {
      * @param conditionEnum
      * @return 
      */
-    public Optional<Boolean> findByCondtionEnum(ConditionResult conditionResult, Enum conditionEnum) {
+    public Optional<Boolean> findByConditionEnum(ConditionResult conditionResult, Enum conditionEnum) {
         final Optional<Boolean> optBooleanResult = conditionResult
                 .result()
                 .stream()

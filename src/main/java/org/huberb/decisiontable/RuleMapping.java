@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Map predicate evaluation results to rules.
+ * Map predicate evaluation results to some rules.
  *
  */
 public class RuleMapping {

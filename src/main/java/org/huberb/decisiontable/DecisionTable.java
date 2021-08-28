@@ -22,12 +22,12 @@ import java.util.function.Predicate;
  * A simple decision table.
  *
  * <ol>
- * <li>Using enum to name conditions. Conditions are evaluated using
+ * <li>Using enumerations to name conditions. Conditions are evaluated using
  * {@link Predicate}.
  * </li>
  * <li>
  * Result of applying predicates are mapped to Rules again denoted via some
- * enum.
+ * enumeration.
  * </li>
  * <li>
  * Finally rules are evaluated using {@link  Function}.
@@ -35,7 +35,7 @@ import java.util.function.Predicate;
  * </ul>
  * <p>
  * This implementation is quite simple, and uses Builders for setting up the
- * datastructure.
+ * data structure.
  *
  * @author berni
  */
