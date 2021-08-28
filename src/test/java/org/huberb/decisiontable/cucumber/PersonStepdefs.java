@@ -15,18 +15,17 @@
  */
 package org.huberb.decisiontable.cucumber;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import org.hamcrest.MatcherAssert;
 import org.huberb.decisiontable.Conditions;
 import org.huberb.decisiontable.Conditions.ConditionResult;
 import org.huberb.decisiontable.ConditionsListBuilder;
 import org.huberb.decisiontable.Person;
 import org.huberb.decisiontable.tuple.Couple;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
@@ -81,9 +80,9 @@ public class PersonStepdefs {
                     throw new AssertionError("Missing enum " + conditionName + ", " + conditionResult);
                 });
 
-        MatcherAssert.assertThat(rArg1, new CoupleEnumBooleanMatcher(e, true));
-        assertEquals(m, e, rArg1.getT());
-        assertEquals(m, true, rArg1.getU().booleanValue());
+        // TODO replace ? MatcherAssert.assertThat(rArg1, new CoupleEnumBooleanMatcher(e, true));
+        assertEquals(e, rArg1.getT(), m);
+        assertEquals(true, rArg1.getU().booleanValue(), m);
     }
 
 }
