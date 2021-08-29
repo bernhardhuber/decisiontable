@@ -17,6 +17,7 @@ package org.huberb.decisiontable;
 
 import java.util.List;
 import java.util.Map;
+import org.huberb.decisiontable.Conditions.ConditionResult;
 
 /**
  * Map predicate evaluation results to some rules.
@@ -24,44 +25,20 @@ import java.util.Map;
  */
 public class RuleMapping {
 
-    private final Map<Conditions.ConditionResult, List<Enum>> m;
+    private final Map<ConditionResult, List<Enum>> m;
 
-    public RuleMapping(Map<Conditions.ConditionResult, List<Enum>> m) {
+    public RuleMapping(Map<ConditionResult, List<Enum>> m) {
         this.m = m;
     }
 
     /**
+     * Lookup the list of enumerations associated with a condition result.
      *
-     * @param conditionResult
-     * @return
+     * @param conditionResult a key looking up a list of enumerations
+     * @return looked up conditionResul
      */
-    public List<Enum> mapToRules(Conditions.ConditionResult conditionResult) {
-        //final List<Couple<Enum, Boolean>> l = conditionResult.result;
+    public List<Enum> mapToRules(ConditionResult conditionResult) {
         final List<Enum> result = m.get(conditionResult);
-        //            if (result == null) {
-        //                for (Map.Entry<ConditionResult, List<Enum>> entry : m.entrySet()) {
-        //                    ConditionResult entryKey = entry.getKey();
-        //
-        //                    boolean matched = false;
-        //                    if (l.size() == entryKey.result().size()) {
-        //                        for (int i = 0; i < l.size(); i++) {
-        //                            Couple<Enum, Boolean> lcouple = l.get(i);
-        //                            Couple<Enum, Boolean> entryKeycouple = entryKey.result().get(i);
-        //
-        //                            if (lcouple.getT() == entryKeycouple.getT()
-        //                                    && lcouple.getU().equals(entryKeycouple.getU())) {
-        //                                matched = true;
-        //                            } else {
-        //                                matched = false;
-        //                                break;
-        //                            }
-        //                        }
-        //                    }
-        //                    if (matched) {
-        //                        result = entry.getValue();
-        //                    }
-        //                }
-        //            }
         return result;
     }
 

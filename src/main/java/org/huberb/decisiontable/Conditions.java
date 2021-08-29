@@ -35,6 +35,9 @@ public class Conditions<C> {
         this.conditionsList = conditionsList;
     }
 
+    /**
+     * Encapsulate the result of an condition evaluation.
+     */
     public static class ConditionResult {
 
         private final List<Couple<Enum, Boolean>> result;
@@ -77,8 +80,8 @@ public class Conditions<C> {
         /**
          * Return condition evaluation result.
          *
-         * @param conditionEnum
-         * @return
+         * @param conditionEnum enumeration key
+         * @return result of looking up conditionEnum
          */
         public Optional<Boolean> findByConditionEnum(Enum conditionEnum) {
             final Optional<Boolean> optBooleanResult = this.result()
@@ -94,7 +97,7 @@ public class Conditions<C> {
      * Evaluate conditions.
      *
      * @param ctx context for evaluating the predicates.
-     * @return
+     * @return result of applying the predicate functions {@link ConditionResult} 
      */
     public ConditionResult evaluateUsing(C ctx) {
         final List<Couple<Enum, Boolean>> result = new ArrayList<>();

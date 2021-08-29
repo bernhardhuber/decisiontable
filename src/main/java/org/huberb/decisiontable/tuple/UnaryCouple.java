@@ -21,7 +21,7 @@ import java.io.Serializable;
  * Tuple with 2 elements having the same type.
  *
  * @author berni
- * @param <T>
+ * @param <T> some type
  */
 public class UnaryCouple<T> extends Couple<T, T> implements Serializable {
 

@@ -22,10 +22,11 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
+ * Builder building {@link ActionMapping}.
  *
  * @author berni3
- * @param <C>
- * @param <R>
+ * @param <C> context type
+ * @param <R> result type
  */
 public class ActionMappingMapBuilder<C, R> {
 

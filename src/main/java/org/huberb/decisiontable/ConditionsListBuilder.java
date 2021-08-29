@@ -22,9 +22,10 @@ import java.util.function.Supplier;
 import org.huberb.decisiontable.tuple.Couple;
 
 /**
+ * Builder building a list of couples of enumeration, and predicate function.
  *
  * @author berni3
- * @param <C>
+ * @param <C> context type
  */
 public class ConditionsListBuilder<C> {
 

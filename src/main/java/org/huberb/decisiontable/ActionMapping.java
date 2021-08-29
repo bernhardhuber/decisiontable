@@ -41,8 +41,8 @@ public class ActionMapping<C, R> {
      * Apply rule actions.
      *
      * @param ctx context for applying some rule action.
-     * @param l list of rules denoted via enum.
-     * @return
+     * @param l list of rules denoted via enumeration.
+     * @return list of couples of enumeration, and action result.
      */
     public List<Couple<Enum, R>> applyActions(C ctx, List<Enum> l) {
         final List<Couple<Enum, R>> result = new ArrayList<>();
