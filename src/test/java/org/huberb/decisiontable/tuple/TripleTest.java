@@ -15,8 +15,14 @@
  */
 package org.huberb.decisiontable.tuple;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import org.apache.commons.lang3.SerializationUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  *
@@ -60,4 +66,21 @@ public class TripleTest {
         assertEquals(false, is2_1.hashCode() == is1_2.hashCode());
     }
 
+    @ParameterizedTest
+    @MethodSource("createTripleIntegerStringDouble")
+    public void testSerializeDeserialze(final Triple<Integer, String, Double> tripleIntegerStringDouble) {
+        final Triple<Integer, String, Double> tripleIntegerStringDoubleSerializeDeserialize = SerializationUtils.roundtrip(tripleIntegerStringDouble);
+        assertEquals(tripleIntegerStringDouble.getT(), tripleIntegerStringDoubleSerializeDeserialize.getT());
+        assertEquals(tripleIntegerStringDouble.getU(), tripleIntegerStringDoubleSerializeDeserialize.getU());
+        assertEquals(tripleIntegerStringDouble.getV(), tripleIntegerStringDoubleSerializeDeserialize.getV());
+    }
+
+    public static Stream<Triple<Integer, String, Double>> createTripleIntegerStringDouble() {
+        final List l = Arrays.asList(
+                new Triple<>(-1, "a", -1.0),
+                new Triple<>(0, "", 0.0),
+                new Triple<>(1, "A", 1.0)
+        );
+        return l.stream();
+    }
 }

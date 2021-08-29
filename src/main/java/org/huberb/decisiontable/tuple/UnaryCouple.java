@@ -35,4 +35,9 @@ public class UnaryCouple<T> extends Couple<T, T> implements Serializable {
         super(t1, t2);
     }
 
+    @Override
+    public String toString() {
+        return "UnaryCouple{" + "t1=" + this.t + ", t2=" + this.u + '}';
+    }
+
 }

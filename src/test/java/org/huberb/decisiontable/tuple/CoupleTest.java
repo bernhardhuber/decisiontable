@@ -15,8 +15,14 @@
  */
 package org.huberb.decisiontable.tuple;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import org.apache.commons.lang3.SerializationUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  *
@@ -59,4 +65,22 @@ public class CoupleTest {
         assertEquals(false, is2_1.hashCode() == is1_2.hashCode());
     }
 
+    @ParameterizedTest
+    @MethodSource("createCouplesIntegerString")
+    public void testSerializeDeserialze(final Couple<Integer, String> coupleIntegerString) {
+        final Couple<Integer, String> coupleIntegerString1ASerializeDeserialize = SerializationUtils.roundtrip(coupleIntegerString);
+        assertEquals(coupleIntegerString.getT(), coupleIntegerString1ASerializeDeserialize.getT());
+        assertEquals(coupleIntegerString.getU(), coupleIntegerString1ASerializeDeserialize.getU());
+    }
+
+    public static Stream<Couple<Integer, String>> createCouplesIntegerString() {
+        final List l = Arrays.asList(
+                new Couple<>(-2, "aa"),
+                new Couple<>(-1, "a"),
+                new Couple<>(0, ""),
+                new Couple<>(1, "A"),
+                new Couple<>(2, "AA")
+        );
+        return l.stream();
+    }
 }

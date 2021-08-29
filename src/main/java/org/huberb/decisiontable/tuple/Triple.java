@@ -79,4 +79,9 @@ public class Triple<T, U, V> implements Serializable {
         return equalsResult;
     }
 
+    @Override
+    public String toString() {
+        return "Triple{" + "t=" + t + ", u=" + u + ", v=" + v + '}';
+    }
+
 }

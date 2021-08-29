@@ -15,8 +15,14 @@
  */
 package org.huberb.decisiontable.tuple;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+import org.apache.commons.lang3.SerializationUtils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  *
@@ -59,4 +65,23 @@ public class QuadrupleTest {
         assertEquals(false, is2_1.hashCode() == is1_2.hashCode());
     }
 
+    @ParameterizedTest
+    @MethodSource("createQuadruple")
+    public void testSerializeDeserialze(final Quadruple<Integer, String, Integer, String> quadrupleIntegerStringIntegerString) {
+        final Quadruple<Integer, String, Integer, String> quadrupleIntegerStringIntegerStringSerializeDeserialize
+                = SerializationUtils.roundtrip(quadrupleIntegerStringIntegerString);
+        assertEquals(quadrupleIntegerStringIntegerString.getT(), quadrupleIntegerStringIntegerStringSerializeDeserialize.getT());
+        assertEquals(quadrupleIntegerStringIntegerString.getU(), quadrupleIntegerStringIntegerStringSerializeDeserialize.getU());
+        assertEquals(quadrupleIntegerStringIntegerString.getV(), quadrupleIntegerStringIntegerStringSerializeDeserialize.getV());
+        assertEquals(quadrupleIntegerStringIntegerString.getW(), quadrupleIntegerStringIntegerStringSerializeDeserialize.getW());
+    }
+
+    public static Stream<Quadruple<Integer, String, Integer, String>> createQuadruple() {
+        final List l = Arrays.asList(
+                new Quadruple<>(-2, "aa", -1, "a"),
+                new Quadruple<>(0, "", 0, " "),
+                new Quadruple<>(1, "A", 2, "AA")
+        );
+        return l.stream();
+    }
 }

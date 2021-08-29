@@ -87,4 +87,9 @@ public class Quadruple<T, U, V, W> implements Serializable {
         return equalsResult;
     }
 
+    @Override
+    public String toString() {
+        return "Quadruple{" + "t=" + t + ", u=" + u + ", v=" + v + ", w=" + w + '}';
+    }
+
 }

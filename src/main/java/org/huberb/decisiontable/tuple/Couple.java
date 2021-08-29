@@ -71,4 +71,9 @@ public class Couple<T, U> implements Serializable {
         return tAndUEquals;
     }
 
+    @Override
+    public String toString() {
+        return "Couple{" + "t=" + t + ", u=" + u + '}';
+    }
+
 }
