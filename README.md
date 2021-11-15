@@ -27,7 +27,3 @@ constructs.
 Maybe to get some idea of this decision-table implementation look at the
 unit-test
  https://github.com/bernhardhuber/decisiontable/blob/master/src/test/java/org/huberb/decisiontable/DecisionTableTest.java
-
-[![Build Status](https://travis-ci.org/bernhardhuber/decisiontable.svg?branch=master)](https://travis-ci.org/bernhardhuber/decisiontable)
-
-[![Java CI](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml/badge.svg)](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml)
