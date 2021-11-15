@@ -2,6 +2,8 @@
 
 A simple project realizing a decision table in java.
 
+[![Java CI](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml/badge.svg)](https://github.com/bernhardhuber/decisiontable/actions/workflows/maven.yml)
+
 As I was browsing some websites for organizing business logic, I stumbled
 over the *decision table* topic.
 
