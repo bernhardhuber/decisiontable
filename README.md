@@ -16,14 +16,18 @@ I decided to realize some simple decision table using
 I read about some decision table implementation using Excel or some other tools,
 I decided to stick to a simple pure Java implementation.
 
-The basic idea is to replace long-and-nested if/else by some more simpler
+The basic idea is to replace long-and-nested if/else statements by some more simpler
 
-* org.huberb.decisiontable.DecisionTable.Conditions
-* org.huberb.decisiontable.DecisionTable.RuleMapping
-* org.huberb.decisiontable.DecisionTable.ActionMapping
+* org.huberb.decisiontable.Conditions
+* org.huberb.decisiontable.RuleMapping
+* org.huberb.decisiontable.ActionMapping
 
 constructs.
 
 Maybe to get some idea of this decision-table implementation look at the
-unit-test
- https://github.com/bernhardhuber/decisiontable/blob/master/src/test/java/org/huberb/decisiontable/DecisionTableTest.java
+unit-tests:
+
+* src/test/java/org/huberb/decisiontable/ActionMappingTest.java
+* src/test/java/org/huberb/decisiontable/ConditionsTest.java
+* src/test/java/org/huberb/decisiontable/RuleMappingTest.java
+
