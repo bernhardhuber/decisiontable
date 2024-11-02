@@ -72,6 +72,12 @@
             <version>3.12.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>de.unknownreality</groupId>
+            <artifactId>dataframe</artifactId>
+            <version>0.7.6</version>
+            <scope>test</scope>
+        </dependency>        
     </dependencies>
     <build>
         <plugins>
@@ -90,6 +96,7 @@
                 <configuration>
                     <!--<groups>fast</groups>-->
                     <excludedGroups>slow</excludedGroups>
+                    <trimStackTrace>false</trimStackTrace>
                     <properties>
                         <!--
                         <configurationParameters>
