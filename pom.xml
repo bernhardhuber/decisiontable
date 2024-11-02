@@ -62,6 +62,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
+            <!-- upgrade to gt or ge 1.3.2 -->
             <version>1.3.2</version>
             <scope>test</scope>
         </dependency>
