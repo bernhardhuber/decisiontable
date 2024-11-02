@@ -60,10 +60,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <!-- upgrade to gt or ge 1.3.2 -->
-            <version>1.3.2</version>
+            <version>2.17.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
